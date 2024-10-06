@@ -1,0 +1,264 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  overflow: hidden;
+}
+.paint-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #fff; /* Background color */
+      background-image: radial-gradient(circle, #ccc 10%, transparent 10%), 
+                        radial-gradient(circle, #ccc 10%, transparent 10%);
+      background-size: 20px 20px; /* Size of each dot */
+      background-position: 0 0, 10px 10px; /* Offset for the second layer */
+      height: 100%;
+}
+.paint-header {
+  padding: 20px; 
+  text-align: center; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.paint-header h1 {
+  font-size: 3rem; 
+  font-weight: bold;
+  color: #ffdd59; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+  margin: 0; 
+  letter-spacing: 2px; 
+  text-transform: uppercase; 
+}
+
+/* Paint Toolbar CSS - Compact with Icons, No Text */
+.paint-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  gap: 6px;
+  max-width: 600px; 
+  margin: 0 auto;
+  margin-top: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.paint-toolbar button {
+  background-color: #f4f4f4;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  width: 40px; /* Reduced button width */
+  height: 40px; /* Reduced button height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paint-toolbar button:hover {
+  background-color: #e2e2e2;
+}
+
+.paint-toolbar button.active {
+  background-color: #F5EFFF; /* Active button effect */
+  border: 1px solid #7d7eff;
+}
+
+/* Add SVG icons to buttons */
+.paint-toolbar button img {
+  width: 16px; /* Adjust icon size */
+  height: 16px;
+}
+
+.paint-toolbar input[type="range"] {
+  width: 60px; /* Smaller range input */
+  height: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.paint-toolbar input[type="color"] {
+  width: 26px; /* Smaller color picker */
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  cursor: pointer;
+}
+
+.paint-toolbar button#save-image,
+.paint-toolbar button#clear-canvas {
+  width: 50px; 
+  padding: 4px 6px;
+}
+
+.paint-toolbar button#stop-tool {
+  background-color: #5d5d5d;
+  color: white;
+  width: 50px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: none;
+}
+
+/* Hide text inside buttons and show icons */
+.paint-toolbar button::before {
+  display: inline-block;
+  content: ""; /* No text */
+  width: 16px;
+  height: 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#pencil-tool::before {
+  background-image: url(/frontend/icons/pencil.svg);
+}
+#eraser-tool::before {
+  background-image: url(/frontend/icons/eraser-svgrepo-com.svg);
+}
+#line-tool::before {
+  background-image: url(/frontend/icons/line-tool-svgrepo-com.svg);
+}
+#rectangle-tool::before {
+  background-image: url(/frontend/icons/rectangle-svgrepo-com.svg);
+}
+#circle-tool::before {
+  background-image: url(/frontend/icons/circle-svgrepo-com.svg);
+}
+#triangle-tool::before {
+  background-image: url(/frontend/icons/triangle-shape-container-empty-wrapper-point-svgrepo-com.svg);
+}
+#star-tool::before {
+  background-image: url(/frontend/icons/star-svgrepo-com.svg);
+}
+#fill-tool::before {
+  background-image: url(/frontend/icons/format-color-bucket-paint-svgrepo-com.svg);
+}
+#clear-canvas::before {
+  background-image: url(/frontend/icons/clear-circle-svgrepo-com.svg);
+}
+#save-image::before {
+  background-image: url(/frontend/icons/save-svgrepo-com.svg);
+}
+#stop-tool::before {
+  background-image: url("icons/login.svg");
+}
+
+/* Style for image upload button */
+#image-upload {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  opacity: 0;
+  position: relative;
+}
+.paint-toolbar label {
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.paint-toolbar label:hover {
+  background-color: #e2e2e2;
+  border-radius: 4px;
+}
+
+/* Icon Image Styling */
+.paint-toolbar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Hidden File Input */
+input[type="file"] {
+  display: none; /* Hide the file input */
+}
+.paint-toolbar label[for="image-upload"] {
+  width: 26px;
+  height: 26px;
+  background-color: #f4f4f4;
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.paint-canvas-container {
+  flex-grow: 1;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+#stop-tool {
+  background-color: #80bcbd;
+  color: #f9f7c9;
+  border: none;
+}
+#paint-canvas {
+  border-radius: 5px;
+  border: 1px solid #d0d0d0;
+  cursor: crosshair;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.login-button {
+  position: absolute; 
+  margin-top: 8px;
+  top: 10px; 
+  left: 10px; 
+  background-color: #a594f9; 
+  color: white; 
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; 
+  font-size: 16px;
+  transition: background-color 0.3s ease; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-button:hover {
+  background-color: #cdc1ff; 
+}
+.zoom-controls {
+display: flex; 
+justify-content: center; 
+align-items: center; 
+margin-top: 10px;
+position: absolute;
+top: 10px;
+right: 10px; 
+z-index: 1000;
+}
+
+.zoom-controls button {
+border: none;
+padding: 10px 15px;
+border-radius: 5px; 
+cursor: pointer; 
+font-size: 20px; 
+margin-left: 5px;
+transition: background-color 0.3s ease; 
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.zoom-controls button:hover {
+color: white;
+background-color: #CDC1FF; 
+}
