@@ -219,7 +219,7 @@ document.getElementById("clear-canvas").addEventListener("click", () => {
 
 document.getElementById("save-image").addEventListener("click", () => {
   const link = document.createElement("a");
-  link.download = "creative-canvas-drawing.png";
+  link.download = "Vichar(विचार).png";
   link.href = canvas.toDataURL();
   link.click();
 });
