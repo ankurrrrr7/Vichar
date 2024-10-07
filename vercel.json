@@ -7,17 +7,16 @@
       }
     ],
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/frontend/$1"
-      },
-      {
-        "src": "/",
-        "dest": "/frontend/index.html"
-      },
-      {
-        "src": "/login",
-        "dest": "/frontend/login.html"
-      }
-    ]
+        {
+          "src": "/main.js",
+          "dest": "/frontend/main.js"
+        },
+        {
+          "src": "/(.*)",
+          "dest": "/frontend/$1"
+        }
+      ]
   }
+
+
+  
