@@ -8,7 +8,7 @@
     ],
     "routes": [
         {
-          "src": "/main.js",
+          "src": "/backend/src/main.js",
           "dest": "/backend/src/main.js"
         },
         {
