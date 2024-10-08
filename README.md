@@ -9,4 +9,9 @@ Features (Version 0.0.1):
 - Make shapes
 - Save the file
 
-# More is coming!!
+#  (Version 1.0.0) coming soon:
+- Login and can save your data
+- Can add text now
+- change the borders of shapes
+- Fill colours
+- Dragable shapes
