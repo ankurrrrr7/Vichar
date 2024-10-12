@@ -9,6 +9,7 @@ let currentTool = "pencil";
 let currentColor = "#000000";
 let currentLineWidth = 5;
 let fillMode = false;
+let shape =[];
 
 function resizeCanvas() {
   canvas.width = canvasContainer.clientWidth - 20;
@@ -69,6 +70,7 @@ function draw(e) {
       ctx.arc(lastX, lastY, radius, 0, 2 * Math.PI);
       if (fillMode) ctx.fill();
       ctx.stroke();
+      shape.push({type:"circle",radius,strokeStyle })
       break;
     case "triangle":
       ctx.putImageData(saveState, 0, 0);
@@ -232,7 +234,7 @@ const ctxx = canvas.getContext('2d');
 
 // Set the canvas size (you can adjust the size as needed)
 canvass.width = window.innerWidth - 20; 
-canvass.height = window.innerHeight - 150; 
+canvass.height = window.innerHeight - 100; 
 
 // Add event listener for image upload
 document.getElementById('image-upload').addEventListener('change', function (event) {
