@@ -14,4 +14,5 @@ Features (Version 0.0.1):
 - Can add text now
 - change the borders of shapes
 - Fill colours
-- Dragable shapes
+- Dragable 
+- The Deadline date is 15/10/24
