@@ -1,27 +1,62 @@
-document.getElementById('login-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+const express = require("express");
+const jwt = require("jsonwebtoken");
+const jwtPassword = "123456";
+const zod = require("zod");
+const app = express();
+app.use(express.json())
+const ALL_USERS = [
+  {
+    username: "harkirat@gmail.com",
+    password: "123",
+    name: "harkirat singh",
+  },
+  {
+    username: "raman@gmail.com",
+    password: "123321",
+    name: "Raman singh",
+  },
+  {
+    username: "priya@gmail.com",
+    password: "123321",
+    name: "Priya kumari",
+  },
+];
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const errorMessage = document.getElementById('error-message');
-    const successMessage = document.getElementById('success-message');
+function userExists(username, password) {
+  let userExists = false;
+ for(let i=0; i<ALL_USERS.length; i++){
+      if(ALL_USERS[i].username==username && ALL_USERS[i].password==password){
+        userExists = true;
+      }
+ }
+ return userExists;
 
-    // Example hardcoded credentials for demonstration
-    const validUsername = "user";
-    const validPassword = "password";
+}
 
-    if (username === validUsername && password === validPassword) {
-        // Hide error, show success
-        errorMessage.style.display = 'none';
-        successMessage.style.display = 'block';
+app.post("/signin", function (req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
 
-        // Simulate redirect after login
-        setTimeout(() => {
-            window.location.href = 'dashboard.html';
-        }, 2000);
-    } else {
-        // Hide success, show error
-        successMessage.style.display = 'none';
-        errorMessage.style.display = 'block';
-    }
+  if (!userExists(username, password)) {
+    return res.status(403).json({
+      msg: "User doesnt exist in our in memory db",
+    });
+  }
+
+  var token = jwt.sign({ username: username }, jwtPassword);
+  return res.json({
+    token,
+  });
 });
+
+app.get("/users", function (req, res) {
+  const token = req.headers.authorization;
+    const decoded = jwt.verify(token, jwtPassword);
+    const username = decoded.username;
+  res.json({
+    msg: ALL_USERS
+  })
+  
+});
+
+app.listen(3000)
