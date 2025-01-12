@@ -9,7 +9,7 @@ const ALL_USERS = [
     {
       username: "harkirat@gmail.com",
       password: "123",
-      name: "harkirat singh",
+      name: "ankur jha",
     }
   ];
 app.post("/signin",(req, res)=>{
